@@ -1,13 +1,43 @@
 #container{
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     border: solid black;
+    height: 100vh;
+}
+
+#container *{
+    margin: auto;
 }
 
 #output_container{
-    width: 74%;
-    height: 150px;
+    margin: auto;
+    width: 75%;
+    height: 10vh;
     border-radius: 20px;
     font-size: 28px;
+    border: black solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.elements{
+    width: 75%;
+    height: 40vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    border: solid;
+}
+.button{
+    background-color: red;
+    color: white;
+    padding: 15px;
+    font-size: 24px;
+    border-radius: 15px;
+    border: none;
+}
+
+.button:hover{
+    background-color: brown;
 }
