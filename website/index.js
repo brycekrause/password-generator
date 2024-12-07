@@ -3,7 +3,7 @@ output_area = document.getElementById('output_container');
 generate_button = document.getElementById("generate");
 generate_button.addEventListener('click', function(){
     output = document.createElement('p');
-    output.textContent = 'pasword';
+    output.textContent = generate_password(15);
     output_area.appendChild(output);
 });
 
@@ -32,12 +32,12 @@ for (let i = 0; i < special.length; i++){
 
 
 function generate_password(length){
-    let result = '';
+    var result = '';
     for (let i = 0; i < length; i++){
-        let char = Math.floor(Math.random() * all_chars.length+1);
+        let char = Math.floor(Math.random() * all_chars.length-1);
         result += all_chars[char];
     }
-    console.log(result);
+    return result;
 }
 
-//generate_password(12);
+
