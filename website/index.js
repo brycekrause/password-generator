@@ -2,8 +2,13 @@ container = document.getElementById('container');
 output_area = document.getElementById('output_container');
 generate_button = document.getElementById("generate");
 generate_button.addEventListener('click', function(){
+    let old_pass = document.getElementById("password");
+    if (old_pass){
+        output_area.removeChild(old_pass);
+    }
     output = document.createElement('p');
-    output.textContent = generate_password(15);
+    output.id = "password";
+    output.innerHTML = generate_password(15);
     output_area.appendChild(output);
 });
 
