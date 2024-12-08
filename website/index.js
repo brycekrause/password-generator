@@ -39,7 +39,7 @@ for (let i = 0; i < special.length; i++){
 function generate_password(length){
     var result = '';
     for (let i = 0; i < length; i++){
-        let char = Math.floor(Math.random() * all_chars.length-1);
+        let char = Math.floor(Math.random() * all_chars.length);
         result += all_chars[char];
     }
     return result;
