@@ -52,5 +52,5 @@ function generate_password(length){
 }
 
 length_slider.addEventListener('input', function(){
-    generate_password(length_slider.value);
+    updatePassword(generate_password(length_slider.value));
 });
