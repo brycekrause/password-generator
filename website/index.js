@@ -1,17 +1,23 @@
 container = document.getElementById('container');
 output_area = document.getElementById('output_container');
 generate_button = document.getElementById("generate");
-generate_button.addEventListener('click', function(){
+length_slider = document.getElementById("length_slider");
+
+
+function updatePassword(newPassword){
     let old_pass = document.getElementById("password");
     if (old_pass){
         output_area.removeChild(old_pass);
     }
     output = document.createElement('p');
     output.id = "password";
-    output.innerHTML = generate_password(15);
-    output_area.appendChild(output);
-});
+    output.innerHTML = newPassword;
+    output_area.appendChild(output);    
+}
 
+generate_button.addEventListener('click', function(){
+    updatePassword(generate_password(length_slider.value));
+});
 
 let length = 0;
 
@@ -45,4 +51,6 @@ function generate_password(length){
     return result;
 }
 
-
+length_slider.addEventListener('input', function(){
+    generate_password(length_slider.value);
+});
