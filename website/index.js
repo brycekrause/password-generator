@@ -54,3 +54,7 @@ function generate_password(length){
 length_slider.addEventListener('input', function(){
     updatePassword(generate_password(length_slider.value));
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+    updatePassword(generate_password(length_slider.value));
+});
