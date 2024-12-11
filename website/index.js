@@ -53,6 +53,7 @@ function generate_password(length){
     return result;
 }
 
+// implement this
 function calculate_strength(password){
     if (password.length >= 12){
         console.log('strong');
