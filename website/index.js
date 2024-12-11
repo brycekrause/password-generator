@@ -53,6 +53,20 @@ function generate_password(length){
     return result;
 }
 
+function calculate_strength(password){
+    if (password.length >= 12){
+        console.log('strong');
+    }else if(password.length <= 11 && password.length >= 7){
+        console.log("moderate");
+    }else if(password.length <= 6){
+        console.log("weak");
+    }
+}
+
+
+
+
+
 length_slider.addEventListener('input', function(){
     updatePassword(generate_password(length_slider.value));
     length_span.innerText = length_slider.value;
