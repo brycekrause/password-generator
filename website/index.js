@@ -3,6 +3,8 @@ output_area = document.getElementById('output_container');
 generate_button = document.getElementById("generate");
 length_slider = document.getElementById("length_slider");
 
+length_span = document.getElementsByTagName('span')[0];
+length_span.innerText = length_slider.value;
 
 function updatePassword(newPassword){
     let old_pass = document.getElementById("password");
@@ -53,6 +55,7 @@ function generate_password(length){
 
 length_slider.addEventListener('input', function(){
     updatePassword(generate_password(length_slider.value));
+    length_span.innerText = length_slider.value;
 });
 
 document.addEventListener("DOMContentLoaded", function(){
