@@ -74,14 +74,15 @@ document.addEventListener("DOMContentLoaded", function(){
     generate_password(length_slider.value);
 });
 
-function checkboxListener(event) { 
-    const checkboxes = ["special_check", "lowercase_check", "uppercase_check", "numbers_check"]; 
+// check for checked checkboxes. Ensure one checkbox is ALWAYS checked
+function checkboxListener(event) {  
     const checkedCheckboxes = checkboxes.filter(id => document.getElementById(id).checked); 
     if (checkedCheckboxes.length === 0 && event.target.checked === false) { 
         event.target.checked = true; 
     } 
     generate_password(length_slider.value); 
 } 
+
 const checkboxes = ["special_check", "lowercase_check", "uppercase_check", "numbers_check"]; 
 checkboxes.forEach(id => { 
     const checkbox = document.getElementById(id); 
