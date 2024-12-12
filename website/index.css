@@ -11,7 +11,7 @@
 }
 
 #output_container{
-    width: 75%;
+    width: 25%;
     height: 10vh;
     border-radius: 20px;
     font-size: 28px;
@@ -21,15 +21,19 @@
     align-items: center;
     justify-content: center;
     margin: 20px auto;
+    padding: 0px 30px;
 }
 
 .elements{
-    width: 75%;
-    height: 40vh;
+    width: 25%;
+    height: 15vh;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
     border: solid;
+    padding: 30px;
+}
+.elements > div{
+    width: 100%;
 }
 .button{
     background-color: red;

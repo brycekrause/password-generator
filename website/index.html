@@ -10,23 +10,27 @@
     <div id="container">
         <div id="output_container"></div>
         <div class="elements">
-            <div>
-                <h3>Password Length: <span></span></h3>
-                
-                <button class="button">Copy</button>
-                <input type="range" min="1" max="25" value="14" id="length_slider">
-                <button id="generate" class="button">Generate</button>                       
-            </div>
+            <div class="row1">
+                <div>
+                    <h3>Password Length: <span></span></h3>
+                    <input type="range" min="1" max="25" value="14" id="length_slider">                    
+                </div>
 
-            <div>
-                <input type="checkbox" id="special_check" checked>
-                <label id="special_label">Special</label>
-                <input type="checkbox" id="numbers_check" checked>
-                <label id="numbers_label" aria-checked="true">Numbers</label>
-                <input type="checkbox" id="characters_check" checked>
-                <label id="characters_label">Characters</label>
+                <div>
+                    <input type="checkbox" id="special_check" checked>
+                    <label id="special_label">Special</label>
+                    <input type="checkbox" id="numbers_check" checked>
+                    <label id="numbers_label" aria-checked="true">Numbers</label>
+                    <input type="checkbox" id="characters_check" checked>
+                    <label id="characters_label">Characters</label>                    
+                </div>
+
             </div>
      
+            <div class="row2">
+                <button class="button copy">Copy</button>
+                <button id="generate" class="button">Generate</button>  
+            </div>
         </div>
 
     </div>
