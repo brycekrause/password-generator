@@ -62,26 +62,16 @@ document.addEventListener("DOMContentLoaded", function(){
     generate_password(length_slider.value);
 });
 
-document.getElementById("special_check").addEventListener("change", function(){
-    if (special_check.checked){
+function checkboxListener(checkbox){
+    if (checkbox.target.checked){
         console.log("checked");
     }else{
         console.log("unchecked");
     }
-});
+}
 
-document.getElementById("characters_check").addEventListener("change", function(){
-    if (special_check.checked){
-        console.log("checked");
-    }else{
-        console.log("unchecked");
-    }
-});
+const checkboxes = ["special_check", "lowercase_check", "uppercase_check", "numbers_check"];
 
-document.getElementById("numbers_check").addEventListener("change", function(){
-    if (special_check.checked){
-        console.log("checked");
-    }else{
-        console.log("unchecked");
-    }
+checkboxes.forEach(id => {
+    document.getElementById(id).addEventListener("change", checkboxListener());
 });
