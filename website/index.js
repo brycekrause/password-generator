@@ -26,12 +26,8 @@ for (let i = 0; i < special.length; i++){
     all_chars.push(special[i]);
 }
 
-function updatePassword(newPassword){
-    output_container.innerText = newPassword;
-}
-
 generate_button.addEventListener('click', function(){
-    updatePassword(generate_password(length_slider.value));
+    generate_password(length_slider.value);
 });
 
 function generate_password(length){
@@ -40,6 +36,9 @@ function generate_password(length){
         let char = Math.floor(Math.random() * all_chars.length);
         result += all_chars[char];
     }
+    
+    output_container.innerText = result;
+
     return result;
 }
 
@@ -59,10 +58,10 @@ function calculate_strength(password){
 
 
 length_slider.addEventListener('input', function(){
-    updatePassword(generate_password(length_slider.value));
+    generate_password(length_slider.value);
     length_span.innerText = length_slider.value;
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    updatePassword(generate_password(length_slider.value));
+    generate_password(length_slider.value);
 });
