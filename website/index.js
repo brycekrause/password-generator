@@ -13,6 +13,7 @@ var numbers = "1234567890";
 var special = "!@#$%^&*";
 var all_chars = [];
 
+// fix when no checked boxes!!!
 function updateChars(){
     all_chars = [];
     if (document.getElementById("special_check").checked){
@@ -35,12 +36,19 @@ generate_button.addEventListener('click', function(){
 
 function generate_password(length){
     updateChars();
+
     var result = '';
     for (let i = 0; i < length; i++){
         let char = Math.floor(Math.random() * all_chars.length);
         result += all_chars[char];
     }
     
+    if (length > 20){
+        output_container.style.fontSize = "22px";
+    }else{
+        output_container.style.fontSize = "28px";
+    }
+
     output_container.innerText = result;
 
     return result;
