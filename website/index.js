@@ -53,10 +53,6 @@ function calculate_strength(password){
     }
 }
 
-
-
-
-
 length_slider.addEventListener('input', function(){
     generate_password(length_slider.value);
     length_span.innerText = length_slider.value;
@@ -64,4 +60,28 @@ length_slider.addEventListener('input', function(){
 
 document.addEventListener("DOMContentLoaded", function(){
     generate_password(length_slider.value);
+});
+
+document.getElementById("special_check").addEventListener("change", function(){
+    if (special_check.checked){
+        console.log("checked");
+    }else{
+        console.log("unchecked");
+    }
+});
+
+document.getElementById("characters_check").addEventListener("change", function(){
+    if (special_check.checked){
+        console.log("checked");
+    }else{
+        console.log("unchecked");
+    }
+});
+
+document.getElementById("numbers_check").addEventListener("change", function(){
+    if (special_check.checked){
+        console.log("checked");
+    }else{
+        console.log("unchecked");
+    }
 });
