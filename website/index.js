@@ -13,17 +13,20 @@ var numbers = "1234567890";
 var special = "!@#$%^&*";
 var all_chars = [];
 
-for (let i = 0; i < letters.length; i++){
-    all_chars.push(letters[i]);
-}
-for (let i = 0; i < lowercase_letters.length; i++){
-    all_chars.push(lowercase_letters[i]);
-}
-for (let i = 0; i < numbers.length; i++){
-    all_chars.push(numbers[i]);
-}
-for (let i = 0; i < special.length; i++){
-    all_chars.push(special[i]);
+function updateChars(){
+    all_chars = [];
+    if (document.getElementById("special_check").checked){
+        all_chars.push(...special);
+    }
+    if (document.getElementById("numbers_check").checked){
+        all_chars.push(...numbers);
+    }
+    if (document.getElementById("uppercase_check").checked){
+        all_chars.push(...letters);
+    }
+    if (document.getElementById("lowercase_check").checked){
+        all_chars.push(...lowercase_letters);
+    }
 }
 
 generate_button.addEventListener('click', function(){
@@ -31,6 +34,7 @@ generate_button.addEventListener('click', function(){
 });
 
 function generate_password(length){
+    updateChars();
     var result = '';
     for (let i = 0; i < length; i++){
         let char = Math.floor(Math.random() * all_chars.length);
@@ -62,16 +66,3 @@ document.addEventListener("DOMContentLoaded", function(){
     generate_password(length_slider.value);
 });
 
-function checkboxListener(checkbox){
-    if (checkbox.target.checked){
-        console.log("checked");
-    }else{
-        console.log("unchecked");
-    }
-}
-
-const checkboxes = ["special_check", "lowercase_check", "uppercase_check", "numbers_check"];
-
-checkboxes.forEach(id => {
-    document.getElementById(id).addEventListener("change", checkboxListener());
-});
