@@ -1,3 +1,8 @@
+/* TODO: organize
+         save button
+         animations
+         MAKE BETTER!
+
 container = document.getElementById('container');
 output_container = document.getElementById('output_container');
 generate_button = document.getElementById("generate");
@@ -57,7 +62,6 @@ function generate_password(length){
     return result;
 }
 
-// implement this
 function calculate_strength(password){
     let strength = ''
     if (password.length >= 20){
