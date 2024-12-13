@@ -45,7 +45,7 @@ function generate_password(length){
         result += all_chars[char];
     }
     
-    if (length > 20){
+    if (length >= 20){
         output_container.style.fontSize = "22px";
     }else{
         output_container.style.fontSize = "28px";
