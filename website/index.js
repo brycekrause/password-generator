@@ -6,6 +6,8 @@ length_slider = document.getElementById("length_slider");
 length_span = document.getElementsByTagName('span')[0];
 length_span.innerText = length_slider.value;
 
+strength_label = document.getElementById("strength");
+
 // password setup
 var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowercase_letters = letters.toLowerCase();
@@ -50,19 +52,26 @@ function generate_password(length){
     }
 
     output_container.innerText = result;
+    strength_label.innerText = calculate_strength(result);
 
     return result;
 }
 
 // implement this
 function calculate_strength(password){
+    let strength = ''
     if (password.length >= 12){
-        console.log('strong');
+        strength = 'Strong';
+        strength_label.style.color = "lightgreen";
     }else if(password.length <= 11 && password.length >= 7){
-        console.log("moderate");
+        strength = 'Moderate'
+        strength_label.style.color = "yellow";
     }else if(password.length <= 6){
-        console.log("weak");
+        strength = 'Weak'
+        strength_label.style.color = "red";
     }
+
+    return strength;
 }
 
 length_slider.addEventListener('input', function(){
