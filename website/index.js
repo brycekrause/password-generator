@@ -60,7 +60,10 @@ function generate_password(length){
 // implement this
 function calculate_strength(password){
     let strength = ''
-    if (password.length >= 12){
+    if (password.length >= 20){
+        strength = 'Excellent';
+        strength_label.style.color = "royalblue"
+    }else if (password.length <= 19 && password.length >= 12){
         strength = 'Strong';
         strength_label.style.color = "lightgreen";
     }else if(password.length <= 11 && password.length >= 7){
