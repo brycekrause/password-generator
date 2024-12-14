@@ -13,6 +13,8 @@ length_span.innerText = length_slider.value;
 
 strength_label = document.getElementById("strength");
 
+copy_btn = document.getElementById("copy");
+
 // password setup
 var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowercase_letters = letters.toLowerCase();
@@ -90,9 +92,14 @@ document.addEventListener("DOMContentLoaded", function(){
     generate_password(length_slider.value);
 });
 
-document.getElementById("copy").addEventListener("click", function(){
+copy_btn.addEventListener("click", function(){
     navigator.clipboard.writeText(output_container.innerText).then(() => {
-        alert("Password copied!");
+        copy_btn.innerHTML = "&#10003 Copied!";
+        copy_btn.style.backgroundColor = "green";
+        setTimeout(function(){
+            copy_btn.innerHTML = "Copy";
+            copy_btn.style.backgroundColor = "red";
+        }, 2000);
     })
 });
 
