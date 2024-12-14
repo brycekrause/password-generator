@@ -1,7 +1,7 @@
 /* TODO: organize
          save button
          animations
-         MAKE BETTER!
+         MAKE BETTER! */
 
 container = document.getElementById('container');
 output_container = document.getElementById('output_container');
@@ -88,6 +88,12 @@ length_slider.addEventListener('input', function(){
 
 document.addEventListener("DOMContentLoaded", function(){
     generate_password(length_slider.value);
+});
+
+document.getElementById("copy").addEventListener("click", function(){
+    navigator.clipboard.writeText(output_container.innerText).then(() => {
+        alert("Password copied!");
+    })
 });
 
 // check for checked checkboxes. Ensure one checkbox is ALWAYS checked
