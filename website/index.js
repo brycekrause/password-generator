@@ -1,8 +1,3 @@
-/* TODO: organize
-         save button
-         animations
-         MAKE BETTER! */
-
 container = document.getElementById('container');
 output_container = document.getElementById('output_container');
 generate_button = document.getElementById("generate");
