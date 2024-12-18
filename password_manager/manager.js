@@ -1,0 +1,56 @@
+const accountContainer = document.getElementById("accountContainer");
+
+
+function new_account(){
+    addAccountDiv = document.createElement("div");
+
+    headerDiv = document.createElement("div");
+
+    windowTitle = document.createElement("h1");
+    windowTitle.innerText = "Add account";
+
+    buttonDiv = document.createElement("div");
+
+    saveButton = document.createElement("button");
+    saveButton.innerText = "Save";
+    saveButton.className = "saveButton";
+    closeButton = document.createElement("button");
+    closeButton.innerText = "Close";
+    closeButton.className = "closeButton";
+
+    buttonDiv.appendChild(saveButton);
+    buttonDiv.appendChild(closeButton);
+
+    headerDiv.appendChild(windowTitle);
+    headerDiv.appendChild(buttonDiv);
+
+    titleLabel = document.createElement("label");
+    titleLabel.innerText = 'Title:';
+    titleInput = document.createElement("input");
+
+    loginLabel = document.createElement("label");
+    loginLabel.innerText = 'Login:';
+    loginInput = document.createElement("input");
+
+    passwordLabel = document.createElement("label");
+    passwordLabel.innerText = 'Password:';
+    passwordInput = document.createElement("input");   
+
+    addAccountDiv.appendChild(headerDiv);
+    addAccountDiv.appendChild(titleLabel);
+    addAccountDiv.appendChild(titleInput);
+    addAccountDiv.appendChild(loginLabel);
+    addAccountDiv.appendChild(loginInput);
+    addAccountDiv.appendChild(passwordLabel);
+    addAccountDiv.appendChild(passwordInput);
+
+
+    accountContainer.appendChild(addAccountDiv)
+}
+
+
+document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("new_btn").addEventListener("click", function(){
+        new_account();
+    });
+});

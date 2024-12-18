@@ -1,0 +1,46 @@
+#accountContainer > div{
+    width: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    border: solid black;
+    background-color: rgb(130, 130, 243);
+}
+#accountContainer label{
+    margin: 0px 10px;
+    font-size: 24px;
+}
+#accountContainer input{
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid gray;
+    width: 50%;
+}
+#accountContainer h1{
+    margin: 20px 10px;
+}
+#accountContainer button{
+    margin: 0px 10px;
+    padding: 15px;
+    font-size: 24px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+.closeButton{
+    background-color: red;
+}
+.saveButton{
+    background-color: green;
+}
+#accountContainer > div > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+}
