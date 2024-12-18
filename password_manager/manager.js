@@ -3,6 +3,7 @@ const accountContainer = document.getElementById("accountContainer");
 
 function new_account(){
     addAccountDiv = document.createElement("div");
+    addAccountDiv.style.visibility = 'hidden';
 
     headerDiv = document.createElement("div");
 
@@ -45,12 +46,26 @@ function new_account(){
     addAccountDiv.appendChild(passwordInput);
 
 
-    accountContainer.appendChild(addAccountDiv)
+    accountContainer.appendChild(addAccountDiv);
 }
 
 
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("new_btn").addEventListener("click", function(){
-        new_account();
+        addAccountDiv.style.visibility = 'visible';
     });
+
+    closeButton.addEventListener("click", function(){
+        addAccountDiv.style.visibility = 'hidden';
+    });
+
+    saveButton.addEventListener("click", function(){
+        addAccountDiv.style.visibility = 'hidden';
+    });
+
 });
+
+
+
+
+new_account();
