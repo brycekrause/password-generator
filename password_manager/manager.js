@@ -28,14 +28,17 @@ function new_account(){
     titleLabel = document.createElement("label");
     titleLabel.innerText = 'Title:';
     titleInput = document.createElement("input");
+    titleInput.placeholder = 'Name of service';
 
     loginLabel = document.createElement("label");
     loginLabel.innerText = 'Login:';
     loginInput = document.createElement("input");
+    loginInput.placeholder = 'Username/Email';
 
     passwordLabel = document.createElement("label");
     passwordLabel.innerText = 'Password:';
-    passwordInput = document.createElement("input");   
+    passwordInput = document.createElement("input");
+    passwordInput.placeholder = 'Password';   
 
     addAccountDiv.appendChild(headerDiv);
     addAccountDiv.appendChild(titleLabel);
