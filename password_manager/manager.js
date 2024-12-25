@@ -64,6 +64,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
     saveButton.addEventListener("click", function(){
         addAccountDiv.style.visibility = 'hidden';
+        let title = titleInput.value;
+        let login = loginInput.value;
+        let password = passwordInput.value;
+        document.writeln(`${title} ${login}:${password}`); 
     });
 
 });
