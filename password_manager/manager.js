@@ -52,6 +52,23 @@ function new_account(){
     accountContainer.appendChild(addAccountDiv);
 }
 
+function appendAccount(title, login, password){
+    accountDiv = document.createElement("div");
+
+    accountTitle = document.createElement("p");
+    accountTitle.innerText = title;
+    accountLogin = document.createElement("p");
+    accountLogin.innerText = login;
+    accountPassword = document.createElement("p");
+    accountPassword.innerText = password;
+
+    accountDiv.appendChild(accountTitle);
+    accountDiv.appendChild(accountLogin);
+    accountDiv.appendChild(accountPassword);
+
+    accountContainer.appendChild(accountDiv);
+}
+
 
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("new_btn").addEventListener("click", function(){
@@ -67,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let title = titleInput.value;
         let login = loginInput.value;
         let password = passwordInput.value;
-        document.writeln(`${title} ${login}:${password}`); 
+        appendAccount(title, login, password);
     });
 
 });
