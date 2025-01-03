@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "password-manager",
+  "productName": "pass-manager",
   "version": "0.1.0",
-  "identifier": "passmanager",
+  "identifier": "com.pass-manager.app",
   "build": {
     "frontendDist": "../src"
   },
@@ -10,7 +10,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "password-manager",
+        "title": "pass-manager",
         "width": 800,
         "height": 600
       }
