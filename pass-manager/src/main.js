@@ -82,9 +82,18 @@ async function save_info(){
     }).catch((error) => {
         h1.textContent = error;
     });
+    appendAccount(titleInput.value, loginInput.value, passwordInput.value);
 }
 
 document.addEventListener("DOMContentLoaded", function(){
+    invoke("readJSON").then((response) => {
+        for (let i = 0; i < response.length; i++){
+            appendAccount(response[i].title, response[i].login, response[i].password);
+        }
+    }).catch((error) => {
+        h1.textContent = error;
+    });
+
     document.getElementById("new_btn").addEventListener("click", function(){
         addAccountDiv.style.visibility = 'visible';
     });
