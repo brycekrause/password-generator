@@ -73,7 +73,7 @@ function appendAccount(title, login, password){
 }
 
 async function save_info(){
-    await invoke("appendJSON", {
+    await invoke("append_json", {
       title: titleInput.value, 
       login: loginInput.value, 
       password: passwordInput.value
@@ -81,17 +81,19 @@ async function save_info(){
         h1.textContent = response;
     }).catch((error) => {
         h1.textContent = error;
+        console.error("Error: ", error);
     });
     appendAccount(titleInput.value, loginInput.value, passwordInput.value);
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-    invoke("readJSON").then((response) => {
+    invoke("read_json").then((response) => {
         for (let i = 0; i < response.length; i++){
             appendAccount(response[i].title, response[i].login, response[i].password);
         }
     }).catch((error) => {
         h1.textContent = error;
+        console.error("Error: ", error);
     });
 
     document.getElementById("new_btn").addEventListener("click", function(){
