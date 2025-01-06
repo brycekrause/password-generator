@@ -1,14 +1,21 @@
+#accountContainer{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 10px;
+  width: 100%;
+  border: solid 1px black;
+}
+
 #accountContainer > div{
   width: 50%;
+  height: 25%;
   position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
   display: flex;
   flex-direction: column;
   border-radius: 15px;
   background-color: rgb(130, 130, 243);
+  border: solid 1px black;
 }
 #accountContainer label{
   margin: 0px 10px;
@@ -37,13 +44,13 @@
 .saveButton{
   background-color: green;
 }
-#accountContainer > div > div{
+/*#accountContainer > div > div{
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
-}
+}*/
 
 .container{
   display: grid;
@@ -77,4 +84,11 @@
   grid-area: footer;
   background-color: orangered;
   border: 1px solid;
+}
+
+#addAccountDiv{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

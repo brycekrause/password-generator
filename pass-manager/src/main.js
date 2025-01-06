@@ -3,9 +3,11 @@ const { invoke } = window.__TAURI__.core;
 let h1 = document.getElementById("h1");
 
 const accountContainer = document.getElementById("accountContainer");
+const container = document.getElementById("container");
 
 function new_account(){
     addAccountDiv = document.createElement("div");
+    addAccountDiv.className = "addAccountDiv";
     addAccountDiv.style.visibility = 'hidden';
 
     headerDiv = document.createElement("div");
@@ -52,7 +54,7 @@ function new_account(){
     addAccountDiv.appendChild(passwordInput);
 
 
-    accountContainer.appendChild(addAccountDiv);
+    container.appendChild(addAccountDiv);
 }
 
 function appendAccount(title, login, password){
