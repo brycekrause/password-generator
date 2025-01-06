@@ -1,5 +1,5 @@
 use serde::{Serialize, Deserialize};
-use serde_json::{to_writer_pretty, from_reader, to_value, Value};
+use serde_json::{to_writer_pretty, from_reader, Value};
 use std::fs::OpenOptions;
 use std::io::{BufWriter, BufReader, Seek, SeekFrom};
 use tauri::Error;
@@ -22,7 +22,6 @@ fn append_json(title: &str, login: &str, password: &str) -> Result<String, Error
     let mut file = OpenOptions::new()
         .read(true)
         .write(true)
-        .append(true)
         .create(true)
         .open("data.json")
         .map_err(|e| Error::from(e))?;
