@@ -7,14 +7,16 @@ use tauri::Error;
 #[derive(Serialize, Deserialize)]
 struct Data{
     title: String,
+    link: String,
     login: String,
     password: String,
 }
 
 #[tauri::command]
-fn append_json(title: &str, login: &str, password: &str) -> Result<String, Error> {
+fn append_json(title: &str, link: &str, login: &str, password: &str) -> Result<String, Error> {
     let data = Data {
         title: title.to_string(),
+        link: link.to_string(),
         login: login.to_string(),
         password: password.to_string(),
     };
@@ -26,7 +28,7 @@ fn append_json(title: &str, login: &str, password: &str) -> Result<String, Error
             .create(true)
             .open("data.json")
             .map_err(|e| Error::from(e))?;
-        
+
         let mut reader = BufReader::new(&file);
         let mut json_data: Value = match from_reader(&mut reader) {
             Ok(value) => value,
@@ -35,14 +37,14 @@ fn append_json(title: &str, login: &str, password: &str) -> Result<String, Error
                 Value::Array(vec![])
             },
         };
-    
+
         if let Value::Array(ref mut arr) = json_data {
             arr.push(serde_json::to_value(&data).map_err(|e| {
                 eprintln!("Failed to convert data to JSON value: {:?}", e);
                 Error::from(e)
             })?);
         }
-    
+
         file.set_len(0).map_err(|e| {
             eprintln!("Failed to truncate file: {:?}", e);
             Error::from(e)
@@ -51,7 +53,7 @@ fn append_json(title: &str, login: &str, password: &str) -> Result<String, Error
             eprintln!("Failed to seek to start of file: {:?}", e);
             Error::from(e)
         })?;
-    
+
         let writer = BufWriter::new(file);
         to_writer_pretty(writer, &json_data).map_err(|e| {
             eprintln!("Failed to write JSON data: {:?}", e);

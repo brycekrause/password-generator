@@ -35,6 +35,11 @@ function new_account(){
     titleInput = document.createElement("input");
     titleInput.placeholder = 'Name of service';
 
+    linkLabel = document.createElement("label");
+    linkLabel.innerText = 'Link:';
+    linkInput = document.createElement("input");
+    linkInput.placeholder = 'Link';   
+
     loginLabel = document.createElement("label");
     loginLabel.innerText = 'Login:';
     loginInput = document.createElement("input");
@@ -48,6 +53,8 @@ function new_account(){
     addAccountDiv.appendChild(headerDiv);
     addAccountDiv.appendChild(titleLabel);
     addAccountDiv.appendChild(titleInput);
+    addAccountDiv.appendChild(linkLabel);
+    addAccountDiv.appendChild(linkInput);
     addAccountDiv.appendChild(loginLabel);
     addAccountDiv.appendChild(loginInput);
     addAccountDiv.appendChild(passwordLabel);
@@ -57,17 +64,20 @@ function new_account(){
     container.appendChild(addAccountDiv);
 }
 
-function appendAccount(title, login, password){
+function appendAccount(title, link, login, password){
     accountDiv = document.createElement("div");
 
     accountTitle = document.createElement("p");
     accountTitle.innerText = title;
+    accountLink = document.createElement("p");
+    accountLink.innerText = link;
     accountLogin = document.createElement("p");
     accountLogin.innerText = login;
     accountPassword = document.createElement("p");
     accountPassword.innerText = password;
 
     accountDiv.appendChild(accountTitle);
+    accountDiv.appendChild(accountLink);
     accountDiv.appendChild(accountLogin);
     accountDiv.appendChild(accountPassword);
 
@@ -77,6 +87,7 @@ function appendAccount(title, login, password){
 async function save_info(){
     await invoke("append_json", {
       title: titleInput.value, 
+      link: linkInput.value,
       login: loginInput.value, 
       password: passwordInput.value
     }).then((response) => {
@@ -85,13 +96,13 @@ async function save_info(){
         h1.textContent = error;
         console.error("Error: ", error);
     });
-    appendAccount(titleInput.value, loginInput.value, passwordInput.value);
+    appendAccount(titleInput.value, linkInput.value, loginInput.value, passwordInput.value);
 }
 
 document.addEventListener("DOMContentLoaded", function(){
     invoke("read_json").then((response) => {
         for (let i = 0; i < response.length; i++){
-            appendAccount(response[i].title, response[i].login, response[i].password);
+            appendAccount(response[i].title, response[i].link, response[i].login, response[i].password);
         }
     }).catch((error) => {
         h1.textContent = error;
