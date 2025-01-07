@@ -64,7 +64,7 @@ function new_account(){
     container.appendChild(addAccountDiv);
 }
 
-function appendAccount(title, link, thumb, login, password){
+function appendAccount(title, link, login, password){
     accountDiv = document.createElement("div");
 
     accountTitle = document.createElement("p");
@@ -72,7 +72,7 @@ function appendAccount(title, link, thumb, login, password){
     accountLink = document.createElement("p");
     accountLink.innerText = link;
     accountThumb = document.createElement("img");
-    accountThumb.src = thumb;
+    accountThumb.src = "assets/user.png";
     accountLogin = document.createElement("p");
     accountLogin.innerText = login;
     accountPassword = document.createElement("p");
@@ -87,34 +87,10 @@ function appendAccount(title, link, thumb, login, password){
     accountContainer.appendChild(accountDiv);
 }
 
-async function getThumb(url){
-    try{
-        const response = await fetch(url);
-        if (!response.ok){
-            throw new Error("Network response was not ok " + response.status);
-        }
-
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const ogImage = doc.querySelector('meta[property="og:image"]');
-
-        if (!ogImage){
-            throw new Error("No og:image found");
-        }else{
-            return ogImage.getAttribute('content');
-        }
-    } catch (error){
-        h1.textContent = error;
-        return null;
-    }
-}
-
 async function save_info(){
     await invoke("append_json", {
       title: titleInput.value, 
       link: linkInput.value,
-      thumb: getThumb(linkInput.value),
       login: loginInput.value, 
       password: passwordInput.value
     }).then((response) => {
@@ -123,13 +99,13 @@ async function save_info(){
         h1.textContent = error;
         console.error("Error: ", error);
     });
-    appendAccount(titleInput.value, linkInput.value, getThumb(linkInput.value), loginInput.value, passwordInput.value);
+    appendAccount(titleInput.value, linkInput.value, loginInput.value, passwordInput.value);
 }
 
 document.addEventListener("DOMContentLoaded", function(){
     invoke("read_json").then((response) => {
         for (let i = 0; i < response.length; i++){
-            appendAccount(response[i].title, response[i].link, response[i].thumb, response[i].login, response[i].password);
+            appendAccount(response[i].title, response[i].link, response[i].login, response[i].password);
         }
     }).catch((error) => {
         h1.textContent = error;

@@ -29,6 +29,9 @@
 #accountContainer h1{
   margin: 20px 10px;
 }
+#accountContainer img{
+  width: 10%;
+}
 .addAccountDiv button{
   margin: 0px 10px;
   padding: 15px;
