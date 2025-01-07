@@ -67,20 +67,20 @@ function new_account(){
 function appendAccount(title, link, login, password){
     accountDiv = document.createElement("div");
 
+    accountThumb = document.createElement("img");
+    accountThumb.src = "assets/user.png";    
     accountTitle = document.createElement("p");
     accountTitle.innerText = title;
     accountLink = document.createElement("p");
     accountLink.innerText = link;
-    accountThumb = document.createElement("img");
-    accountThumb.src = "assets/user.png";
     accountLogin = document.createElement("p");
     accountLogin.innerText = login;
     accountPassword = document.createElement("p");
     accountPassword.innerText = password;
 
+    accountDiv.appendChild(accountThumb);
     accountDiv.appendChild(accountTitle);
     accountDiv.appendChild(accountLink);
-    accountDiv.appendChild(accountThumb);
     accountDiv.appendChild(accountLogin);
     accountDiv.appendChild(accountPassword);
 
