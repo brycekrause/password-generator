@@ -30,7 +30,9 @@
   margin: 20px 10px;
 }
 #accountContainer img{
-  width: 10%;
+  width: 20%;
+  margin: auto;
+  padding: 5px;
 }
 .addAccountDiv button{
   margin: 0px 10px;

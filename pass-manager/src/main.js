@@ -1,4 +1,5 @@
 const { invoke } = window.__TAURI__.core;
+const { open } = window.__TAURI__.shell;
 
 let h1 = document.getElementById("h1");
 
@@ -71,8 +72,6 @@ function appendAccount(title, link, login, password){
     accountThumb.src = "assets/user.png";    
     accountTitle = document.createElement("p");
     accountTitle.innerText = title;
-    accountLink = document.createElement("p");
-    accountLink.innerText = link;
     accountLogin = document.createElement("p");
     accountLogin.innerText = login;
     accountPassword = document.createElement("p");
@@ -80,7 +79,6 @@ function appendAccount(title, link, login, password){
 
     accountDiv.appendChild(accountThumb);
     accountDiv.appendChild(accountTitle);
-    accountDiv.appendChild(accountLink);
     accountDiv.appendChild(accountLogin);
     accountDiv.appendChild(accountPassword);
 
@@ -100,6 +98,11 @@ async function save_info(){
         console.error("Error: ", error);
     });
     appendAccount(titleInput.value, linkInput.value, loginInput.value, passwordInput.value);
+
+    titleInput.value = '';
+    linkInput.value = '';
+    loginInput.value = '';
+    passwordInput.value = '';
 }
 
 document.addEventListener("DOMContentLoaded", function(){

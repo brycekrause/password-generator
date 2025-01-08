@@ -17,5 +17,17 @@
     "login": "bryce@gmail.com",
     "password": "password123!",
     "title": "Ebay"
+  },
+  {
+    "link": "Githum/com",
+    "login": "bryce@gmail",
+    "password": "gjwjogjeiow32q90",
+    "title": "Githum"
+  },
+  {
+    "link": "twitter.com",
+    "login": "bryce@gmail.com",
+    "password": "pasoddeodd!@1324",
+    "title": "Twitter"
   }
 ]
