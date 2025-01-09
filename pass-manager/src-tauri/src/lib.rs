@@ -7,16 +7,14 @@ use tauri::Error;
 #[derive(Serialize, Deserialize)]
 struct Data{
     title: String,
-    link: String,
     login: String,
     password: String,
 }
 
 #[tauri::command]
-fn append_json(title: &str, link: &str, login: &str, password: &str) -> Result<String, Error> {
+fn append_json(title: &str, login: &str, password: &str) -> Result<String, Error> {
     let data = Data {
         title: title.to_string(),
-        link: link.to_string(),
         login: login.to_string(),
         password: password.to_string(),
     };

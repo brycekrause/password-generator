@@ -1,33 +1,22 @@
 [
   {
-    "link": "ef",
-    "login": "fe",
-    "password": "efw",
-    "thumb": "ewqe",
-    "title": "ds"
+    "login": "Example",
+    "password": "Example",
+    "title": "Example"
   },
   {
-    "link": "amazon.com",
-    "login": "bryce@gmail.com",
-    "password": "password123",
+    "login": "bryceusesamazon@gmail.com",
+    "password": "ronalmcdonaldneedslovin2231!",
     "title": "Amazon"
   },
   {
-    "link": "ebay.com",
-    "login": "bryce@gmail.com",
-    "password": "password123!",
-    "title": "Ebay"
+    "login": "ewfew",
+    "password": "fewfew",
+    "title": "ewfew"
   },
   {
-    "link": "Githum/com",
-    "login": "bryce@gmail",
-    "password": "gjwjogjeiow32q90",
-    "title": "Githum"
-  },
-  {
-    "link": "twitter.com",
-    "login": "bryce@gmail.com",
-    "password": "pasoddeodd!@1324",
-    "title": "Twitter"
+    "login": "",
+    "password": "",
+    "title": ""
   }
 ]

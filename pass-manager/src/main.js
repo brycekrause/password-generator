@@ -1,5 +1,4 @@
 const { invoke } = window.__TAURI__.core;
-const { open } = window.__TAURI__.shell;
 
 let h1 = document.getElementById("h1");
 
@@ -36,11 +35,6 @@ function new_account(){
     titleInput = document.createElement("input");
     titleInput.placeholder = 'Name of service';
 
-    linkLabel = document.createElement("label");
-    linkLabel.innerText = 'Link:';
-    linkInput = document.createElement("input");
-    linkInput.placeholder = 'Link';   
-
     loginLabel = document.createElement("label");
     loginLabel.innerText = 'Login:';
     loginInput = document.createElement("input");
@@ -54,70 +48,10 @@ function new_account(){
     addAccountDiv.appendChild(headerDiv);
     addAccountDiv.appendChild(titleLabel);
     addAccountDiv.appendChild(titleInput);
-    addAccountDiv.appendChild(linkLabel);
-    addAccountDiv.appendChild(linkInput);
     addAccountDiv.appendChild(loginLabel);
     addAccountDiv.appendChild(loginInput);
     addAccountDiv.appendChild(passwordLabel);
     addAccountDiv.appendChild(passwordInput);
-
-
-    container.appendChild(addAccountDiv);
-}
-
-function appendAccount(title, link, login, password){
-    accountDiv = document.createElement("div");
-
-    accountThumb = document.createElement("img");
-    accountThumb.src = "assets/user.png";    
-    accountTitle = document.createElement("p");
-    accountTitle.innerText = title;
-    accountLogin = document.createElement("p");
-    accountLogin.innerText = login;
-    accountPassword = document.createElement("p");
-    accountPassword.innerText = password;
-
-    accountDiv.appendChild(accountThumb);
-    accountDiv.appendChild(accountTitle);
-    accountDiv.appendChild(accountLogin);
-    accountDiv.appendChild(accountPassword);
-
-    accountContainer.appendChild(accountDiv);
-}
-
-async function save_info(){
-    await invoke("append_json", {
-      title: titleInput.value, 
-      link: linkInput.value,
-      login: loginInput.value, 
-      password: passwordInput.value
-    }).then((response) => {
-        h1.textContent = response;
-    }).catch((error) => {
-        h1.textContent = error;
-        console.error("Error: ", error);
-    });
-    appendAccount(titleInput.value, linkInput.value, loginInput.value, passwordInput.value);
-
-    titleInput.value = '';
-    linkInput.value = '';
-    loginInput.value = '';
-    passwordInput.value = '';
-}
-
-document.addEventListener("DOMContentLoaded", function(){
-    invoke("read_json").then((response) => {
-        for (let i = 0; i < response.length; i++){
-            appendAccount(response[i].title, response[i].link, response[i].login, response[i].password);
-        }
-    }).catch((error) => {
-        h1.textContent = error;
-        console.error("Error: ", error);
-    });
-
-    document.getElementById("new_btn").addEventListener("click", function(){
-        addAccountDiv.style.visibility = 'visible';
-    });
 
     closeButton.addEventListener("click", function(){
         addAccountDiv.style.visibility = 'hidden';
@@ -128,9 +62,120 @@ document.addEventListener("DOMContentLoaded", function(){
         save_info();
     });
 
+    container.appendChild(addAccountDiv);
+}
+
+function account_info(){
+    infoDiv = document.createElement("div");
+    infoDiv.className = "infoDiv";
+    infoDiv.style.visibility = 'hidden';
+    
+    infoHeader = document.createElement("div");
+
+    infoTitle = document.createElement("h1");
+    infoTitle.innerText = "Account Information";
+
+    infoLogin = document.createElement("p");
+    infoLogin.innerText = "Login: ";
+    infoLoginValue = document.createElement("p");
+    infoLoginValue.innerText = "";
+
+    infoPassword = document.createElement("p");
+    infoPassword.innerText = "Password: ";
+    infoPasswordValue = document.createElement("p");
+    infoPasswordValue.innerText = "";
+
+    infoNote = document.createElement("p");
+    infoNote.innerText = "Note: ";
+    infoNoteValue = document.createElement("p");
+    infoNoteValue.innerText = "";
+
+    info_edit_button = document.createElement("button");
+    info_edit_button.innerText = "Edit";
+
+    info_close_button = document.createElement("button");
+    info_close_button.innerText = "Close";
+
+    infoHeader.appendChild(infoTitle);
+    infoHeader.appendChild(info_edit_button);
+    infoHeader.appendChild(info_close_button);
+
+    infoDiv.appendChild(infoHeader);
+    infoDiv.appendChild(infoLogin);
+    infoDiv.appendChild(infoLoginValue);
+    infoDiv.appendChild(infoPassword);
+    infoDiv.appendChild(infoPasswordValue);
+    infoDiv.appendChild(infoNote);
+    infoDiv.appendChild(infoNoteValue);
+
+    info_edit_button.addEventListener("click", function(){
+        console.log("Edit button clicked");
+    });
+
+    info_close_button.addEventListener("click", function(){
+        infoDiv.style.visibility = 'hidden';
+    });
+
+    container.appendChild(infoDiv);
+}
+
+function appendAccount(title, login, password){
+    accountDiv = document.createElement("div");
+    accountDiv.id = "accountDiv";
+
+    accountThumb = document.createElement("img");
+    accountThumb.src = "assets/user.png";    
+    accountTitle = document.createElement("p");
+    accountTitle.innerText = title;
+
+    accountDiv.appendChild(accountThumb);
+    accountDiv.appendChild(accountTitle);
+
+    accountDiv.addEventListener("click", function(){
+        infoTitle.innerText = title;
+        infoLoginValue.innerText = login;
+        infoPasswordValue.innerText = password;
+        infoDiv.style.visibility = 'visible';
+    });
+
+    accountContainer.appendChild(accountDiv);
+}
+
+async function save_info(){
+    await invoke("append_json", {
+      title: titleInput.value, 
+      login: loginInput.value, 
+      password: passwordInput.value
+    }).then((response) => {
+        h1.textContent = response;
+    }).catch((error) => {
+        h1.textContent = error;
+        console.error("Error: ", error);
+    });
+    appendAccount(titleInput.value, loginInput.value, passwordInput.value);
+
+    titleInput.value = '';
+    loginInput.value = '';
+    passwordInput.value = '';
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    invoke("read_json").then((response) => {
+        for (let i = 0; i < response.length; i++){
+            appendAccount(response[i].title, response[i].login, response[i].password);
+        }
+    }).catch((error) => {
+        h1.textContent = error;
+        console.error("Error: ", error);
+    });
+
+    document.getElementById("new_btn").addEventListener("click", function(){
+        addAccountDiv.style.visibility = 'visible';
+    });
 });
 
 
 
 
 new_account();
+account_info();
