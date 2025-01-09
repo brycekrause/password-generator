@@ -3,8 +3,9 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(8, 1fr);
   gap: 5px;
+  
   width: 90%;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 #accountDiv{
@@ -21,7 +22,7 @@
   font-size: 20px;
 }
 #accountDiv p:first-of-type{
-  margin: 0px auto;
+  margin: 0px auto 25px auto;
   color: gray;
   font-size: 24px;
 }
@@ -95,7 +96,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 20em;
+  width: 35em;
   transform: translate(-50%, -50%);
   background-color: white;
   border: 1px solid black;
@@ -108,7 +109,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 20em;
+  width: 35em;
   transform: translate(-50%, -50%);
   background-color: white;
   border: 1px solid black;
