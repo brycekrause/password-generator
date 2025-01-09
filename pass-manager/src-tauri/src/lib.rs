@@ -9,14 +9,16 @@ struct Data{
     title: String,
     login: String,
     password: String,
+    note: String,
 }
 
 #[tauri::command]
-fn append_json(title: &str, login: &str, password: &str) -> Result<String, Error> {
+fn append_json(title: &str, login: &str, password: &str, note: &str) -> Result<String, Error> {
     let data = Data {
         title: title.to_string(),
         login: login.to_string(),
         password: password.to_string(),
+        note: note.to_string(),
     };
 
     {
@@ -59,8 +61,7 @@ fn append_json(title: &str, login: &str, password: &str) -> Result<String, Error
         })?;
     }
 
-    println!("Data appended successfully");
-    Ok("Data appended".to_string())
+    Ok("Data appended successfully".to_string())
 }
 
 #[tauri::command]

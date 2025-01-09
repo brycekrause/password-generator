@@ -1,21 +1,25 @@
 [
   {
-    "login": "Example",
-    "password": "Example",
-    "title": "Example"
-  },
-  {
-    "login": "bryceusesamazon@gmail.com",
-    "password": "ronalmcdonaldneedslovin2231!",
+    "login": "amzaonuser",
+    "note": "this is my amazon account. do not hack it pls",
+    "password": "amazonpassword!",
     "title": "Amazon"
   },
   {
-    "login": "ewfew",
-    "password": "fewfew",
-    "title": "ewfew"
+    "login": "ebayuser",
+    "note": "this is my ebay account. if it gets hacked, i would probably be so sad. good thing i use the local password manager (LPM) to store my sensitive data rather than on the cloud.",
+    "password": "ebaypassword321!",
+    "title": "Ebay"
+  },
+  {
+    "login": "adwdaw",
+    "note": "this is my ebay account. if it gets hacked, i would probably be so sad. good thing i use the local password manager (LPM) to store my sensitive data rather than on the cloud.",
+    "password": "adwdaw",
+    "title": "dwawd"
   },
   {
     "login": "",
+    "note": "",
     "password": "",
     "title": ""
   }

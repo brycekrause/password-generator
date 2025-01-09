@@ -45,6 +45,11 @@ function new_account(){
     passwordInput = document.createElement("input");
     passwordInput.placeholder = 'Password';   
 
+    noteLabel = document.createElement("label");
+    noteLabel.innerText = 'Note:';
+    noteInput = document.createElement("input");
+    noteInput.placeholder = 'Additional information';
+
     addAccountDiv.appendChild(headerDiv);
     addAccountDiv.appendChild(titleLabel);
     addAccountDiv.appendChild(titleInput);
@@ -52,9 +57,15 @@ function new_account(){
     addAccountDiv.appendChild(loginInput);
     addAccountDiv.appendChild(passwordLabel);
     addAccountDiv.appendChild(passwordInput);
+    addAccountDiv.appendChild(noteLabel);
+    addAccountDiv.appendChild(noteInput);
 
     closeButton.addEventListener("click", function(){
         addAccountDiv.style.visibility = 'hidden';
+        titleInput.value = '';
+        loginInput.value = '';
+        passwordInput.value = '';
+        noteInput.value = '';
     });
 
     saveButton.addEventListener("click", function(){
@@ -119,7 +130,7 @@ function account_info(){
     container.appendChild(infoDiv);
 }
 
-function appendAccount(title, login, password){
+function appendAccount(title, login, password, note){
     accountDiv = document.createElement("div");
     accountDiv.id = "accountDiv";
 
@@ -132,9 +143,14 @@ function appendAccount(title, login, password){
     accountDiv.appendChild(accountTitle);
 
     accountDiv.addEventListener("click", function(){
+        if (infoDiv.style.visibility == 'visible'){
+            infoDiv.style.visibility = 'hidden';
+        }
+        
         infoTitle.innerText = title;
         infoLoginValue.innerText = login;
         infoPasswordValue.innerText = password;
+        infoNoteValue.innerText = note;
         infoDiv.style.visibility = 'visible';
     });
 
@@ -145,24 +161,24 @@ async function save_info(){
     await invoke("append_json", {
       title: titleInput.value, 
       login: loginInput.value, 
-      password: passwordInput.value
-    }).then((response) => {
-        h1.textContent = response;
+      password: passwordInput.value,
+      note: noteInput.value
     }).catch((error) => {
         h1.textContent = error;
         console.error("Error: ", error);
     });
-    appendAccount(titleInput.value, loginInput.value, passwordInput.value);
+    appendAccount(titleInput.value, loginInput.value, passwordInput.value, noteInput.value);
 
     titleInput.value = '';
     loginInput.value = '';
     passwordInput.value = '';
+    noteInput.value = '';
 }
 
 document.addEventListener("DOMContentLoaded", function(){
     invoke("read_json").then((response) => {
         for (let i = 0; i < response.length; i++){
-            appendAccount(response[i].title, response[i].login, response[i].password);
+            appendAccount(response[i].title, response[i].login, response[i].password, response[i].note);
         }
     }).catch((error) => {
         h1.textContent = error;
@@ -170,6 +186,9 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     document.getElementById("new_btn").addEventListener("click", function(){
+        if (infoDiv.style.visibility == 'visible'){
+            infoDiv.style.visibility = 'hidden';
+        }
         addAccountDiv.style.visibility = 'visible';
     });
 });
