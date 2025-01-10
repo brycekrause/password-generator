@@ -1,3 +1,8 @@
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
 #accountContainer{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -5,7 +10,7 @@
   gap: 0px;
   
   width: 90%;
-  margin: 10px auto;
+  margin: 30px auto;
 }
 
 #accountDiv{
@@ -14,7 +19,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 15px;
+  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 #accountDiv p{
@@ -65,23 +70,20 @@
   grid-template-areas:
   "sidebar header header"
   "sidebar main main"
-  "sidebar footer footer";
+  "footer footer footer";
   grid-template-columns: 1fr 4fr 4fr;
-  grid-template-rows: 1fr 21fr 1fr;
-  width: 100%;
-  height: 100%;
-  border: 1px solid;
+  grid-template-rows: 0.2fr 2fr 0.2fr;
 }
 
 .sidebar{
   grid-area: sidebar;
-  background-color: greenyellow;
-  border: 1px solid;
+  background-color: #d3d3d3;
+  border-right: 1px solid #ccc;
 }
 .header{
   grid-area: header;
-  background-color: lightblue;
-  border: 1px solid;
+  background-color: #1e90ff;
+  border-bottom: 1px solid #ccc;
 }
 .main{
   grid-area: main;
