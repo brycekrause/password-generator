@@ -7,8 +7,6 @@ html, body{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 0px;
-  
   width: 90%;
   margin: 30px auto;
 }
@@ -79,11 +77,32 @@ html, body{
   grid-area: sidebar;
   background-color: #d3d3d3;
   border-right: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#new_btn{
+  padding: 10px;
+  color: white;
+  background-color: rgb(39, 39, 39);
+  font-size: 24px;
+  margin-top: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
 }
 .header{
   grid-area: header;
   background-color: #1e90ff;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.search_box{
+  padding: 5px;
+  border: solid 1px gray;
+  border-radius: 5px;
+  margin-left: 20px;
 }
 .main{
   grid-area: main;
