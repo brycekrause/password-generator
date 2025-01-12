@@ -87,6 +87,7 @@ function account_info(){
     infoDiv.style.visibility = 'hidden';
     
     infoHeader = document.createElement("div");
+    infoHeader.className = "infoHeader";
 
     infoTitle = document.createElement("h1");
     infoTitle.innerText = "Account Information";
@@ -108,9 +109,11 @@ function account_info(){
 
     info_edit_button = document.createElement("button");
     info_edit_button.innerText = "Edit";
+    info_edit_button.className = "info_editButton";
 
     info_close_button = document.createElement("button");
     info_close_button.innerText = "Close";
+    info_close_button.className = "info_closeButton";
 
     infoHeader.appendChild(infoTitle);
     infoHeader.appendChild(info_edit_button);

@@ -18,17 +18,27 @@ html, body{
   grid-template-rows: repeat(4, 1fr);
   padding: 20px;
   background-color: var(--surface-color);
+  box-sizing: border-box;
+  justify-content: center;
+  gap: 20px;
+  overflow: auto;
+  height: 100%;
 }
 
 #accountDiv{
-  width: 75%;
-  height: 60%;
+  width: 100%;
+  height: 200px;
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: var(--surface-tonal);
+  transition: all 0.3s ease;
+}
+
+#accountDiv:hover{
+  background-color: var(--surface-light);
 }
 
 #accountDiv p{
@@ -118,7 +128,6 @@ html, body{
 }
 .main{
   grid-area: main;
-  overflow: auto;
 }
 
 .addAccountDiv{
@@ -140,8 +149,26 @@ html, body{
   left: 50%;
   width: 35em;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: var(--surface-tonal);
+  color: white;
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
+}
+.infoHeader{
+  display: flex;
+  justify-content: space-between;
+}
+.infoHeader .info_editButton{
+  display: flex;
+  margin-left: auto;
+}
+.infoDiv button{
+  margin: 10px;
+  padding: 15px;
+  font-size: 24px;
+  background-color: var(--primary-accent);
+  color: var(--surface-color);
+  border-radius: 10px;
+  border: none;
 }
