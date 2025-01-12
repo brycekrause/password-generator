@@ -1,14 +1,23 @@
+:root{
+  --primary-accent: #dd638a;
+  --primary-light: #f5bbc9;
+  --surface-color: #121212;
+  --surface-tonal: #282828;
+  --surface-light: #3f3f3f;
+}
+
 html, body{
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 #accountContainer{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  width: 90%;
-  margin: 30px auto;
+  padding: 20px;
+  background-color: var(--surface-color);
 }
 
 #accountDiv{
@@ -19,14 +28,12 @@ html, body{
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--surface-tonal);
 }
+
 #accountDiv p{
-  margin: 0px 5px;
-  font-size: 20px;
-}
-#accountDiv p:first-of-type{
   margin: 0px auto 25px auto;
-  color: gray;
+  color: white;
   font-size: 24px;
 }
 .addAccountDiv h1{
@@ -68,49 +75,50 @@ html, body{
   grid-template-areas:
   "sidebar header header"
   "sidebar main main"
-  "footer footer footer";
+  "sidebar main main";
   grid-template-columns: 1fr 4fr 4fr;
   grid-template-rows: 0.2fr 2fr 0.2fr;
+  height: 100%;
 }
 
 .sidebar{
   grid-area: sidebar;
-  background-color: #d3d3d3;
-  border-right: 1px solid #ccc;
+  background-color: #282828;
+  border-right: 1px solid var(--primary-accent);
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 #new_btn{
-  padding: 10px;
-  color: white;
-  background-color: rgb(39, 39, 39);
-  font-size: 24px;
-  margin-top: 20px;
-  border: 1px solid gray;
-  border-radius: 10px;
+  color: var(--surface-color);
+  background-color: var(--primary-accent);
+  font-size: 16px;
+  border: none;
+  width: 80px;
+  height: 30px;
+  margin-left: 10px;
+  border-radius: 8px;
 }
 .header{
   grid-area: header;
-  background-color: #1e90ff;
-  border-bottom: 1px solid #ccc;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--primary-accent);
   display: flex;
   align-items: center;
-  padding: 10px;
 }
 .search_box{
   padding: 5px;
-  border: solid 1px gray;
+  border: none;
   border-radius: 5px;
   margin-left: 20px;
+  height: 20px;
+  font-size: 14px;
+  background-color: var(--surface-light);
+  color: var(--primary-light);
 }
 .main{
   grid-area: main;
-}
-.footer{
-  grid-area: footer;
-  background-color: orangered;
-  border: 1px solid;
+  overflow: auto;
 }
 
 .addAccountDiv{

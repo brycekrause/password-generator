@@ -1,3 +1,8 @@
+/* TODO: 
+         add containers option to new_account()
+         add containers option to account_info()
+*/
+
 const { invoke } = window.__TAURI__.core;
 
 let h1 = document.getElementById("h1");
