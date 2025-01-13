@@ -32,7 +32,7 @@ html, body{
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
   background-color: var(--surface-tonal);
   transition: all 0.3s ease;
 }
@@ -64,20 +64,6 @@ html, body{
   margin: 10px;
   border: 1px solid gray;
   width: 50%;
-}
-.addAccountDiv button{
-  margin: 0px 10px;
-  padding: 15px;
-  font-size: 24px;
-  color: white;
-  border-radius: 10px;
-  border: none;
-}
-.closeButton{
-  background-color: red;
-}
-.saveButton{
-  background-color: green;
 }
 
 .container{
@@ -136,12 +122,45 @@ html, body{
   left: 50%;
   width: 35em;
   transform: translate(-50%, -50%);
-  background-color: white;
-  border: 1px solid black;
+  color: white;
   border-radius: 5px;
   padding: 5px;
   display: flex;
   flex-direction: column;
+  background-color: var(--surface-tonal);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.addAccountDiv button{
+  margin: 0px 10px;
+  padding: 15px;
+  font-size: 24px;
+  background-color: var(--primary-accent);
+  color: var(--surface-color);
+  border-radius: 10px;
+  border: none;
+}
+.addAccountDiv input{
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: var(--surface-light);
+  color: var(--primary-light);  
+}
+.addAccountDiv span{
+  margin-left: 20px;
+  font-size: 16px;
+  color: var(--primary-accent);
+}
+.headerDiv{
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.saveButton, .closeButton{
+  margin: 0px 10px;
 }
 .infoDiv{
   position: fixed;
@@ -150,8 +169,8 @@ html, body{
   width: 35em;
   transform: translate(-50%, -50%);
   background-color: var(--surface-tonal);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   color: white;
-  border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
 }
@@ -163,6 +182,7 @@ html, body{
   display: flex;
   margin-left: auto;
 }
+
 .infoDiv button{
   margin: 10px;
   padding: 15px;
@@ -171,4 +191,19 @@ html, body{
   color: var(--surface-color);
   border-radius: 10px;
   border: none;
+}
+.infoDiv h1{
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+.infoDiv h3{
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+.infoDiv p{
+  margin-left: 10px;
+  margin-bottom: 10px;
+  background-color: var(--surface-light);
+  padding: 10px;
+  border-radius: 5px;
 }

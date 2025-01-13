@@ -16,6 +16,7 @@ function new_account(){
     addAccountDiv.style.visibility = 'hidden';
 
     headerDiv = document.createElement("div");
+    headerDiv.className = "headerDiv";
 
     windowTitle = document.createElement("h1");
     windowTitle.innerText = "Add account";
@@ -36,24 +37,29 @@ function new_account(){
     headerDiv.appendChild(buttonDiv);
 
     titleLabel = document.createElement("label");
-    titleLabel.innerText = 'Title:';
+    titleLabel.innerText = 'Title';
     titleInput = document.createElement("input");
     titleInput.placeholder = 'Name of service';
 
+    errorLabel = document.createElement("span");
+    errorLabel.innerText = '';
+
     loginLabel = document.createElement("label");
-    loginLabel.innerText = 'Login:';
+    loginLabel.innerText = 'Login';
     loginInput = document.createElement("input");
     loginInput.placeholder = 'Username/Email';
 
     passwordLabel = document.createElement("label");
-    passwordLabel.innerText = 'Password:';
+    passwordLabel.innerText = 'Password';
     passwordInput = document.createElement("input");
     passwordInput.placeholder = 'Password';   
 
     noteLabel = document.createElement("label");
-    noteLabel.innerText = 'Note:';
+    noteLabel.innerText = 'Note';
     noteInput = document.createElement("input");
     noteInput.placeholder = 'Additional information';
+
+    titleLabel.appendChild(errorLabel);
 
     addAccountDiv.appendChild(headerDiv);
     addAccountDiv.appendChild(titleLabel);
@@ -71,11 +77,19 @@ function new_account(){
         loginInput.value = '';
         passwordInput.value = '';
         noteInput.value = '';
+        errorLabel.innerText = '';
     });
 
     saveButton.addEventListener("click", function(){
-        addAccountDiv.style.visibility = 'hidden';
-        save_info();
+        if (titleInput.value == '' || loginInput.value == '' || passwordInput.value == '') {
+            errorLabel.innerText = 'Please fill in all fields';
+        }else if (titleInput.value.length > 15){
+            errorLabel.innerText = 'Title is too long (15 characters max)';
+        }else{
+            errorLabel.innerText = '';
+            addAccountDiv.style.visibility = 'hidden';
+            save_info();
+        }
     });
 
     container.appendChild(addAccountDiv);
@@ -92,18 +106,18 @@ function account_info(){
     infoTitle = document.createElement("h1");
     infoTitle.innerText = "Account Information";
 
-    infoLogin = document.createElement("p");
-    infoLogin.innerText = "Login: ";
+    infoLogin = document.createElement("h3");
+    infoLogin.innerText = "Login";
     infoLoginValue = document.createElement("p");
     infoLoginValue.innerText = "";
 
-    infoPassword = document.createElement("p");
-    infoPassword.innerText = "Password: ";
+    infoPassword = document.createElement("h3");
+    infoPassword.innerText = "Password";
     infoPasswordValue = document.createElement("p");
     infoPasswordValue.innerText = "";
 
-    infoNote = document.createElement("p");
-    infoNote.innerText = "Note: ";
+    infoNote = document.createElement("h3");
+    infoNote.innerText = "Note";
     infoNoteValue = document.createElement("p");
     infoNoteValue.innerText = "";
 
@@ -153,6 +167,10 @@ function appendAccount(title, login, password, note){
     accountDiv.addEventListener("click", function(){
         if (infoDiv.style.visibility == 'visible'){
             infoDiv.style.visibility = 'hidden';
+        }
+
+        if (addAccountDiv.style.visibility == 'visible'){
+            addAccountDiv.style.visibility = 'hidden';
         }
         
         infoTitle.innerText = title;
