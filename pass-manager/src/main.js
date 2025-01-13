@@ -10,7 +10,7 @@ let h1 = document.getElementById("h1");
 const accountContainer = document.getElementById("accountContainer");
 const container = document.getElementById("container");
 
-var titleInput, loginInput, passwordInput, noteInput;
+var currentAccountDiv = null;
 
 function new_account(){
     addAccountDiv = document.createElement("div");
@@ -123,16 +123,16 @@ function account_info(){
     infoNoteValue = document.createElement("p");
     infoNoteValue.innerText = "";
 
-    info_edit_button = document.createElement("button");
-    info_edit_button.innerText = "Edit";
-    info_edit_button.className = "info_editButton";
+    info_delete_button = document.createElement("button");
+    info_delete_button.innerText = "Delete";
+    info_delete_button.className = "info_deleteButton";
 
     info_close_button = document.createElement("button");
     info_close_button.innerText = "Close";
     info_close_button.className = "info_closeButton";
 
     infoHeader.appendChild(infoTitle);
-    infoHeader.appendChild(info_edit_button);
+    infoHeader.appendChild(info_delete_button);
     infoHeader.appendChild(info_close_button);
 
     infoDiv.appendChild(infoHeader);
@@ -143,23 +143,33 @@ function account_info(){
     infoDiv.appendChild(infoNote);
     infoDiv.appendChild(infoNoteValue);
 
-    info_edit_button.addEventListener("click", function(){
-        invoke("read_json").then((response) => {
-            for (let i = 0; i < response.length; i++){
-                if (response[i].title == document.querySelector(".infoHeader > h1").innerText){
-                    titleInput.value = response[i].title;
-                    loginInput.value = response[i].login;
-                    passwordInput.value = response[i].password;
-                    noteInput.value = response[i].note;
-                }
+    info_delete_button.addEventListener("click", function(){
+        if (info_delete_button.innerText == "Delete"){
+            info_delete_button.innerText = "Confirm?";
+        }else if(info_delete_button.innerText == "Confirm?"){
+            infoDiv.style.visibility = 'hidden';
+            info_delete_button.innerText = "Delete";
+
+            invoke("delete_json", {title: infoTitle.innerHTML});
+
+            while (accountContainer.firstChild){
+                accountContainer.removeChild(accountContainer.firstChild);
             }
-        });
-        infoDiv.style.visibility = 'hidden';
-        addAccountDiv.style.visibility = 'visible';        
+
+            invoke("read_json").then((response) => {
+                for (let i = 0; i < response.length; i++){
+                    appendAccount(response[i].title, response[i].login, response[i].password, response[i].note);
+                }
+            }).catch((error) => {
+                h1.textContent = error;
+                console.error("Error: ", error);
+            });    
+        }    
     });
 
     info_close_button.addEventListener("click", function(){
         infoDiv.style.visibility = 'hidden';
+        info_delete_button.innerText = "Delete";
     });
 
     container.appendChild(infoDiv);
@@ -178,6 +188,7 @@ function appendAccount(title, login, password, note){
     accountDiv.appendChild(accountTitle);
 
     accountDiv.addEventListener("click", function(){
+        currentAccountDiv = accountDiv;
         if (infoDiv.style.visibility == 'visible'){
             infoDiv.style.visibility = 'hidden';
         }

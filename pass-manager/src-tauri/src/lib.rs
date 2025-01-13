@@ -76,10 +76,52 @@ fn read_json() -> Result<Vec<Data>, Error> {
     Ok(data)
 }
 
+#[tauri::command]
+fn delete_json(title: String) -> Result<String, Error> {
+    let mut file = OpenOptions::new()
+        .read(true)
+        .write(true)
+        .open("data.json")
+        .map_err(|e| Error::from(e))?;
+
+    let mut json_data: Value = from_reader(BufReader::new(&file)).unwrap_or_else(|_| Value::Array(vec![]));
+
+    if let Value::Array(ref mut arr) = json_data {
+        arr.retain(|entry| {
+            if let Value::Object(map) = entry {
+                if let Some(Value::String(entry_title)) = map.get("title") {
+                    return entry_title != &title;
+                }
+            }
+            true
+        });
+    }
+
+    file.set_len(0).map_err(|e| {
+        eprintln!("Failed to truncate file: {:?}", e);
+        Error::from(e)
+    })?;
+    file.seek(SeekFrom::Start(0)).map_err(|e| {
+        eprintln!("Failed to seek to start of file: {:?}", e);
+        Error::from(e)
+    })?;
+
+    let writer = BufWriter::new(file);
+    to_writer_pretty(writer, &json_data).map_err(|e| {
+        eprintln!("Failed to write JSON data: {:?}", e);
+        Error::from(e)
+    })?;
+
+    Ok("Data deleted successfully".to_string())
+}
+
+
+
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![append_json, read_json])
+        .invoke_handler(tauri::generate_handler![append_json, read_json, delete_json])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
