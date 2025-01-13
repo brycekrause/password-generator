@@ -10,6 +10,8 @@ let h1 = document.getElementById("h1");
 const accountContainer = document.getElementById("accountContainer");
 const container = document.getElementById("container");
 
+var titleInput, loginInput, passwordInput, noteInput;
+
 function new_account(){
     addAccountDiv = document.createElement("div");
     addAccountDiv.className = "addAccountDiv";
@@ -142,7 +144,18 @@ function account_info(){
     infoDiv.appendChild(infoNoteValue);
 
     info_edit_button.addEventListener("click", function(){
-        console.log("Edit button clicked");
+        invoke("read_json").then((response) => {
+            for (let i = 0; i < response.length; i++){
+                if (response[i].title == document.querySelector(".infoHeader > h1").innerText){
+                    titleInput.value = response[i].title;
+                    loginInput.value = response[i].login;
+                    passwordInput.value = response[i].password;
+                    noteInput.value = response[i].note;
+                }
+            }
+        });
+        infoDiv.style.visibility = 'hidden';
+        addAccountDiv.style.visibility = 'visible';        
     });
 
     info_close_button.addEventListener("click", function(){
