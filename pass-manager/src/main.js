@@ -241,6 +241,22 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         addAccountDiv.style.visibility = 'visible';
     });
+
+    document.getElementById("search").addEventListener("input", function(){
+        while (accountContainer.firstChild){
+            accountContainer.removeChild(accountContainer.firstChild);
+        }
+        invoke("read_json").then((response) => {
+            for (let i = 0; i < response.length; i++){
+                if (response[i].title.toLowerCase().includes(document.getElementById("search").value.toLowerCase())){
+                    appendAccount(response[i].title, response[i].login, response[i].password, response[i].note);
+                }
+            }
+        }).catch((error) => {
+            h1.textContent = error;
+            console.error("Error: ", error);
+        });
+    });
 });
 
 
