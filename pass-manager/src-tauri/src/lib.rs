@@ -65,10 +65,10 @@ fn append_json(title: &str, login: &str, password: &str, note: &str) -> Result<S
 }
 
 #[tauri::command]
-fn read_json() -> Result<Vec<Data>, Error> {
+fn read_json(f: String) -> Result<Vec<Data>, Error> {
     let file = OpenOptions::new()
         .read(true)
-        .open("data.json")
+        .open(f)
         .map_err(|e| Error::from(e))?;
     let reader = BufReader::new(file);
     let data: Vec<Data> = serde_json::from_reader(reader)
