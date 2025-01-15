@@ -196,9 +196,11 @@ function appendAccount(title, login, password, note){
         currentAccountDiv = accountDiv;
         if (infoDiv.style.visibility == 'visible'){
             infoDiv.style.visibility = 'hidden';
-        }
-
-        if (addAccountDiv.style.visibility == 'visible'){
+        }else if(newFolderDiv.style.visibility == 'visible'){
+            newFolderDiv.style.visibility = 'hidden';
+            newFolderInput.value = '';
+            newFolder_errorLabel.innerText = '';
+        }else if (addAccountDiv.style.visibility == 'visible'){
             addAccountDiv.style.visibility = 'hidden';
         }
         
@@ -303,6 +305,10 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("new_btn").addEventListener("click", function(){
         if (infoDiv.style.visibility == 'visible'){
             infoDiv.style.visibility = 'hidden';
+        }else if(newFolderDiv.style.visibility == 'visible'){
+            newFolderDiv.style.visibility = 'hidden';
+            newFolder_errorLabel.innerText = '';
+            newFolderInput.value = '';
         }
         addAccountDiv.style.visibility = 'visible';
     });
@@ -326,6 +332,8 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("new_folder").addEventListener("click", function(){
         if (infoDiv.style.visibility == 'visible'){
             infoDiv.style.visibility = 'hidden';
+        }else if (addAccountDiv.style.visibility == 'visible'){
+            addAccountDiv.style.visibility = 'hidden';
         }
         newFolderDiv.style.visibility = 'visible';
     });
