@@ -154,20 +154,23 @@ function account_info(){
             infoDiv.style.visibility = 'hidden';
             info_delete_button.innerText = "Delete";
 
-            invoke("delete_json", {title: infoTitle.innerHTML});
-
-            while (accountContainer.firstChild){
-                accountContainer.removeChild(accountContainer.firstChild);
-            }
-
-            invoke("read_json", {f: "data.json"}).then((response) => {
-                for (let i = 0; i < response.length; i++){
-                    appendAccount(response[i].title, response[i].login, response[i].password, response[i].note);
+            invoke("delete_json", {title: infoTitle.innerHTML}).then((response) => {
+                if (response == "Data deleted successfully"){
+                    while (accountContainer.firstChild){
+                        accountContainer.removeChild(accountContainer.firstChild);
+                    }                    
                 }
-            }).catch((error) => {
-                h1.textContent = error;
-                console.error("Error: ", error);
-            });    
+
+                invoke("read_json", {f: "data.json"}).then((response) => {
+                    for (let i = 0; i < response.length; i++){
+                        appendAccount(response[i].title, response[i].login, response[i].password, response[i].note);
+                    }
+                }).catch((error) => {
+                    h1.textContent = error;
+                    console.error("Error: ", error);
+                });    
+
+            });
         }    
     });
 
