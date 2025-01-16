@@ -64,6 +64,7 @@ fn append_json(title: &str, login: &str, password: &str, note: &str) -> Result<S
     Ok("Data appended successfully".to_string())
 }
 
+
 #[tauri::command]
 fn read_json(f: String) -> Result<Vec<Data>, Error> {
     let file = OpenOptions::new()

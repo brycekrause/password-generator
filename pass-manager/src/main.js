@@ -11,7 +11,6 @@ const accountContainer = document.getElementById("accountContainer");
 const container = document.getElementById("container");
 
 var currentAccountDiv = null;
-var currentFolder = "all";
 
 function new_account(){
     addAccountDiv = document.createElement("div");
@@ -196,10 +195,6 @@ function appendAccount(title, login, password, note){
         currentAccountDiv = accountDiv;
         if (infoDiv.style.visibility == 'visible'){
             infoDiv.style.visibility = 'hidden';
-        }else if(newFolderDiv.style.visibility == 'visible'){
-            newFolderDiv.style.visibility = 'hidden';
-            newFolderInput.value = '';
-            newFolder_errorLabel.innerText = '';
         }else if (addAccountDiv.style.visibility == 'visible'){
             addAccountDiv.style.visibility = 'hidden';
         }
@@ -232,66 +227,6 @@ async function save_info(){
     noteInput.value = '';
 }
 
-function new_folder(){
-    newFolderDiv = document.createElement("div");
-    newFolderDiv.className = "newFolderDiv popup";
-    newFolderDiv.style.visibility = 'hidden';
-
-    newFolderHeader = document.createElement("div");
-    newFolderHeader.className = "newFolderHeader popupHeader";
-
-    newFolderTitle = document.createElement("h1");
-    newFolderTitle.innerText = "New Folder";
-
-    newFolder_buttonDiv = document.createElement("div");
-
-    newFolder_saveButton = document.createElement("button");
-    newFolder_saveButton.innerText = "Save";
-    newFolder_saveButton.className = "newFolder_saveButton";
-    newFolder_closeButton = document.createElement("button");
-    newFolder_closeButton.innerText = "Close";
-    newFolder_closeButton.className = "newFolder_closeButton";
-
-    newFolder_errorLabel = document.createElement("span");
-    newFolder_errorLabel.innerText = '';
-    
-    newFolderLabel = document.createElement("label");
-    newFolderLabel.innerText = "Folder name";
-    newFolderInput = document.createElement("input");
-    newFolderInput.placeholder = "Folder name";
-
-    newFolderLabel.appendChild(newFolder_errorLabel);
-
-    newFolder_buttonDiv.appendChild(newFolder_saveButton);
-    newFolder_buttonDiv.appendChild(newFolder_closeButton);
-
-    newFolderHeader.appendChild(newFolderTitle);
-    newFolderHeader.appendChild(newFolder_buttonDiv);
-
-    newFolderDiv.appendChild(newFolderHeader);
-    newFolderDiv.appendChild(newFolderLabel);
-    newFolderDiv.appendChild(newFolderInput);
-
-    newFolder_closeButton.addEventListener("click", function(){
-        newFolderDiv.style.visibility = 'hidden';
-        newFolderInput.value = '';
-    });
-
-    newFolder_saveButton.addEventListener("click", function(){
-        if (newFolderInput.value == ''){
-            newFolder_errorLabel.innerText = 'Please fill in all fields';
-        }else if (newFolderInput.value.length > 15){
-            newFolder_errorLabel.innerText = 'Folder name is too long (15 characters max)';
-        }else{
-            newFolder_errorLabel.innerText = '';
-            newFolderDiv.style.visibility = 'hidden';
-            newFolderInput.value = '';
-        }
-    });
-
-    container.appendChild(newFolderDiv);
-}
-
 document.addEventListener("DOMContentLoaded", function(){
     invoke("read_json", {f: "data.json"}).then((response) => {
         for (let i = 0; i < response.length; i++){
@@ -305,10 +240,6 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("new_btn").addEventListener("click", function(){
         if (infoDiv.style.visibility == 'visible'){
             infoDiv.style.visibility = 'hidden';
-        }else if(newFolderDiv.style.visibility == 'visible'){
-            newFolderDiv.style.visibility = 'hidden';
-            newFolder_errorLabel.innerText = '';
-            newFolderInput.value = '';
         }
         addAccountDiv.style.visibility = 'visible';
     });
@@ -328,31 +259,6 @@ document.addEventListener("DOMContentLoaded", function(){
             console.error("Error: ", error);
         });
     });
-
-    document.getElementById("new_folder").addEventListener("click", function(){
-        if (infoDiv.style.visibility == 'visible'){
-            infoDiv.style.visibility = 'hidden';
-        }else if (addAccountDiv.style.visibility == 'visible'){
-            addAccountDiv.style.visibility = 'hidden';
-        }
-        newFolderDiv.style.visibility = 'visible';
-    });
-
-    document.getElementById("all").addEventListener("click", function(){
-        currentFolder = "all";
-        while (accountContainer.firstChild){
-            accountContainer.removeChild(accountContainer.firstChild);
-        }
-
-        invoke("read_json", {f: "data.json"}).then((response) => {
-            for (let i = 0; i < response.length; i++){
-                appendAccount(response[i].title, response[i].login, response[i].password, response[i].note);
-            }
-        }).catch((error) => {
-            h1.textContent = error;
-            console.error("Error: ", error);
-        });
-    });
 });
 
 
@@ -360,4 +266,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
 new_account();
 account_info();
-new_folder();
