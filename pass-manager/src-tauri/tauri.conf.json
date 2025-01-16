@@ -10,7 +10,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "pass-manager",
+        "title": "Local Password Manager",
         "width": 800,
         "height": 600
       }
